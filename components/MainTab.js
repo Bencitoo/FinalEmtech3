@@ -52,7 +52,6 @@ export default function MainTab({ navigation }) {
         'Arial': require('./fonts/Arial.ttf'),
         'Georgia': require('./fonts/georgia.ttf'),
         'Helvetica': require('./fonts/helvetica.ttf'),
-        'Montserrat-Black': require('./fonts/Montserrat-Black.ttf'),
       });
       console.log('Fonts loaded successfully');
     } catch (error) {

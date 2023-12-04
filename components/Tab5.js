@@ -18,7 +18,7 @@ export default function ProfileSetting({ navigation }) {
   const [isEditing, setIsEditing] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [profileImage, setProfileImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null); // State to store image URL
+  const [imageUrl, setImageUrl] = useState(null);
 
   const db = getDatabase();
   const storage = getStorage();
@@ -38,8 +38,8 @@ export default function ProfileSetting({ navigation }) {
             setName(userData.displayName || '');
             setEmail(userData.email || '');
             setStudentNumber(userData.studentNumber || '');
-            setImageUrl(userData.imageUrl || null); // Retrieve image URL from the database
-            setProfileImage(userData.imageUrl || null); // Set profile image for display
+            setImageUrl(userData.imageUrl || null);
+            setProfileImage(userData.imageUrl || null);
           }
         }
       } catch (error) {
@@ -77,36 +77,31 @@ export default function ProfileSetting({ navigation }) {
     try {
       const user = auth.currentUser;
   
-      // Re-authenticate the user before making changes
       const credential = EmailAuthProvider.credential(user.email, currentPassword);
       await reauthenticateWithCredential(user, credential);
   
-      // Upload profile image to Firebase Storage
       if (profileImage) {
         const imageRef = storageRef(storage, `profileImages/${user.uid}`);
         const response = await fetch(profileImage);
         const blob = await response.blob();
         await uploadBytes(imageRef, blob);
   
-        // Get the download URL
         const downloadURL = await getDownloadURL(imageRef);
         setImageUrl(downloadURL);
       }
   
-      // Update Realtime Database
       const userId = user.uid;
       await set(ref(db, `users/${userId}`), {
         displayName: name,
         email: newEmail || email,
         studentNumber: studentNumber,
-        imageUrl: imageUrl || null, // Store the image URL in the database
+        imageUrl: imageUrl || null,
       });
   
       if (newEmail && newEmail !== email) {
         await updateEmail(user, newEmail);
       }
   
-      // Update Authentication profile
       await updateUserProfile(user, { displayName: name });
   
       setIsEditing(false);
@@ -139,7 +134,6 @@ export default function ProfileSetting({ navigation }) {
       'Helvetica': require('../assets/fonts/helvetica.ttf'),
       'Verdana': require('../assets/fonts/Verdana.ttf'),
     });
-    // Set a state or do any other initialization after loading fonts if needed
   }
 
   return (
@@ -288,10 +282,10 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   editIcon: {
-    marginTop: 10, // Adjusted margin for better placement
+    marginTop: 10,
   },
   labelContainer: {
-    width: '80%', // Adjusted width for better design
+    width: '80%',
     paddingHorizontal: 20,
     marginBottom: 10,
   },
@@ -304,7 +298,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     borderBottomColor: '#485E6E',
     borderBottomWidth: 1,
-    paddingVertical: 10, // Adjusted padding for better design
+    paddingVertical: 10,
   },
   icon: {
     marginRight: 10,
@@ -320,15 +314,15 @@ const styles = StyleSheet.create({
     color: '#485E6E',
   },
   buttonContainer: {
-    backgroundColor: '#FFD700', // Changed color to gold
+    backgroundColor: '#FFD700',
     paddingVertical: 10,
-    paddingHorizontal: 20, // Adjusted width for better design
+    paddingHorizontal: 20,
     borderRadius: 10,
     marginVertical: 10,
-    alignSelf: 'center', // Center the button horizontally
+    alignSelf: 'center',
   },
   buttontext: {
-    color: '#000', // Changed color to black
+    color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
   },

@@ -16,10 +16,10 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig); 
 export const auth = getAuth(app);
 export const db = getDatabase(app);
-export const createUser = createUserWithEmailAndPassword; // renamed for clarity
-export const signInUser = signInWithEmailAndPassword; // renamed for clarity
-export const updateUserProfile = updateProfile; // add this line
-export const userSignOut = signOut; // add this line
+export const createUser = createUserWithEmailAndPassword;
+export const signInUser = signInWithEmailAndPassword;
+export const updateUserProfile = updateProfile;
+export const userSignOut = signOut;
 
 export const storage = getStorage(app);
 export const database = getDatabase(app);

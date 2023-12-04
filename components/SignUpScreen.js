@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
-import { auth } from '../src/firebase'; // Import Firebase auth
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'; // Import Firebase createUserWithEmailAndPassword
+import { auth } from '../src/firebase';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { getDatabase, ref, set } from "firebase/database";
 
 export default function SignUpScreen({ navigation }) {
@@ -35,13 +35,10 @@ export default function SignUpScreen({ navigation }) {
     }
 
     try {
-      // Create user in Authentication
       const authUser = await createUserWithEmailAndPassword(auth, email, password);
 
-      // Update user profile in Authentication (displayName)
       await updateProfile(authUser.user, { displayName: studentNumber });
 
-      // Update Realtime Database
       const userId = authUser.user.uid;
       await set(ref(db, `users/${userId}`), {
         email: email,

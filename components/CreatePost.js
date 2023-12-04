@@ -52,12 +52,17 @@ const CreatePost = ({ navigation }) => {
       quality: 1,
     });
 
-    if (pickerResult.cancelled) {
+    if (pickerResult.canceled) {
       return;
     }
 
-    setSelectedImage({ localUri: pickerResult.uri });
-  };
+    const selectedAssets = pickerResult.assets;
+    
+  if (selectedAssets.length > 0) {
+    const selectedAsset = selectedAssets[0];
+    setSelectedImage({ localUri: selectedAsset.uri });
+  }
+};
 
   const uploadImage = async (uri) => {
     const storage = getStorage();
