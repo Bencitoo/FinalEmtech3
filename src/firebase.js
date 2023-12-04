@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB8MpJnk6EC1ogJ-_vItDEZNF7sHFoTEso",
@@ -19,3 +20,6 @@ export const createUser = createUserWithEmailAndPassword; // renamed for clarity
 export const signInUser = signInWithEmailAndPassword; // renamed for clarity
 export const updateUserProfile = updateProfile; // add this line
 export const userSignOut = signOut; // add this line
+
+export const storage = getStorage(app);
+export const database = getDatabase(app);

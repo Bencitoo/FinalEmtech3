@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Image, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { auth } from '../src/firebase'; // Import Firebase auth
-import { signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase signInWithEmailAndPassword
+import { auth } from '../src/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login({ navigation }) {
   const [studentNumber, setStudentNumber] = useState('');
@@ -63,7 +63,7 @@ export default function Login({ navigation }) {
         />
       </View>
       <TouchableOpacity
-        style={[styles.buttonContainer, { width: 200, borderRadius: 10 }]} // Corrected the style object
+        style={[styles.buttonContainer, { width: 200, borderRadius: 10 }]}
         onPress={handleLogin}
       >
         <Text style={styles.buttontext}>LOGIN</Text>

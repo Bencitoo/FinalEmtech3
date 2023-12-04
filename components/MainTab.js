@@ -58,7 +58,6 @@ export default function MainTab({ navigation }) {
     } catch (error) {
       console.error('Error loading fonts:', error);
     }
-    // Set a state or do any other initialization after loading fonts if needed
   }
   
 
@@ -181,11 +180,11 @@ export default function MainTab({ navigation }) {
       <TouchableOpacity
   style={[
     styles.tab,
-    activeTab === 'FOR YOU' && styles.activeTab, // Add this line
+    activeTab === 'FOR YOU' && styles.activeTab,
   ]}
   onPress={() => {
     navigation.navigate('MainTab');
-    setActiveTab('FOR YOU'); // Add this line
+    setActiveTab('FOR YOU');
   }}
 >
   <Text style={styles.tabText}>FOR YOU</Text>
@@ -194,11 +193,11 @@ export default function MainTab({ navigation }) {
 <TouchableOpacity
   style={[
     styles.tab,
-    activeTab === 'YOUR POSTS' && styles.activeTab, // Add this line
+    activeTab === 'YOUR POSTS' && styles.activeTab,
   ]}
   onPress={() => {
     navigation.navigate('MainTabTwo');
-    setActiveTab('YOUR POSTS'); // Add this line
+    setActiveTab('YOUR POSTS');
   }}
 >
   <Text style={styles.tabText}>YOUR POSTS</Text>
