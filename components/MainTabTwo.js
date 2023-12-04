@@ -30,7 +30,6 @@ export default function MainTabTwo({ navigation }) {
     const db = getDatabase();
     const postsRef = ref(db, 'items');
     
-    // Fetch posts only for the authenticated user
     if (user) {
       const userPostsQuery = onValue(
         query(postsRef, orderByChild('userEmail'), equalTo(user.email)),
